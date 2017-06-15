@@ -14,10 +14,13 @@ function destroyTest {
 
 function testWrites {
   NOS=$1 # number of unique keys to write
+  VALSIZE=$2 # size of each entry written
+
+  RANDSTRING=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $VALSIZE | head -n1)
 
   T="$(date +%s)"
   for i in `seq 1 $NOS`; do
-    DB=$DB ./mydb put $i 'Sample record.'
+    DB=$DB ./mydb put $i $RANDSTRING
   done
   T="$(($(date +%s)-T))"
 
@@ -37,6 +40,6 @@ function testReads {
 }
 
 setupTest
-testWrites 1000
+testWrites 1000 5
 testReads 1000
 destroyTest
