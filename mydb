@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# database structure
+# As a key-value csv: 1 key,value per line
+# Only restriction is that keys cannot contain `,`
+
+# default DB file
+DB="db1"
+
+function get {
+  KEY=$1
+
+  grep "^$KEY" $DB | cut -d, -f2-
+}
+
+if [ $1 == "get" ]; then
+  get $2
+fi
