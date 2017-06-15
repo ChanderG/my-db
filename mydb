@@ -13,6 +13,15 @@ function get {
   grep "^$KEY" $DB | cut -d, -f2-
 }
 
+function put {
+  KEY=$1
+  VALUE=$2
+
+  sed -ri "s/^$KEY.*/$KEY,$VALUE/" $DB
+}
+
 if [ $1 == "get" ]; then
   get $2
+elif [[ $1 == "put" ]]; then
+  put $2 $3
 fi
