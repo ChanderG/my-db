@@ -17,7 +17,13 @@ function put {
   KEY=$1
   VALUE=$2
 
-  sed -ri "s/^$KEY.*/$KEY,$VALUE/" $DB
+  if [[ $(get $KEY) == "" ]]; then
+    # insert key
+    echo "$KEY,$VALUE" >> $DB
+  else
+    # update key
+    sed -ri "s/^$KEY.*/$KEY,$VALUE/" $DB
+  fi
 }
 
 if [ $1 == "get" ]; then
