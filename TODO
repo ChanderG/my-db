@@ -1,0 +1,35 @@
+Possible approaches from here
+=============================
+
+Feature-wise improvement
+  Parallel requests
+  More efficient stores
+  More efficient queries
+
+Performance-wise improvement
+  Caching etc
+  Transparent low-hanging changes to push performance up w/o major changes feature wise
+  in-memory implementation
+  in-memory file system options for minimal changes
+
+Comparision with existing solutions
+  Other KV stores
+  Other lightweight general db solutions such as sqlite
+
+Distributed Variant
+  One main feature - distributed approach to the same thing
+  Store data - sharding/replication etc
+  Access data - active-passive; master-master etc
+
+Base reimplementation
+  In other languages using specific features:
+  1. C - continuous client + binary stores
+  2. Python - dict/pickle store
+  etc.
+  + comparision - performance wise
+
+In product building of simple db
+  browser: localstorage + JS
+  emacs: text + elisp
+  filesystem: files + bash
+  etc
